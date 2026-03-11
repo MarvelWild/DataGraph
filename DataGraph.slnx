@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="../MW.Core/MW.Core/MW.Core.csproj" />
+  <Project Path="../QuikGraph/src/QuikGraph/QuikGraph.csproj" />
   <Project Path="DataGraph/DataGraph.csproj" />
 </Solution>

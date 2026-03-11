@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="QuikGraph" Version="2.5.0" />
-    <PackageReference Include="QuikGraph.Serialization" Version="2.5.0" />
+    <ProjectReference Include="..\..\MW.Core\MW.Core\MW.Core.csproj" />
+    <ProjectReference Include="..\..\QuikGraph\src\QuikGraph\QuikGraph.csproj" />
   </ItemGroup>
 
 </Project>
