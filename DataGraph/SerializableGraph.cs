@@ -18,15 +18,15 @@ namespace DataGraph
 			Edges = new List<Edge>();
 		}
 
-		public SerializableGraph(AdjacencyGraph<Vertex, Edge> graph)
+		public SerializableGraph(UndirectedGraph<Vertex, Edge> graph)
 		{
 			Vertices = new List<Vertex>(graph.Vertices);
 			Edges = new List<Edge>(graph.Edges);
 		}
 
-		public AdjacencyGraph<Vertex, Edge> CreateGraph()
+		public UndirectedGraph<Vertex, Edge> CreateGraph()
 		{
-			var result = new AdjacencyGraph<Vertex, Edge>();
+			var result = new UndirectedGraph<Vertex, Edge>();
 
 			result.AddVertexRange(Vertices);
 			result.AddVerticesAndEdgeRange(Edges);
