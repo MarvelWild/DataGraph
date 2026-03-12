@@ -30,10 +30,9 @@ namespace DataGraph
 
 		public MainController()
 		{
+			// не используется, создаётся повторно в Load()
 			Graph = new UndirectedGraph<Vertex, Edge>();
-			var rootVertex = new Vertex() { Name = "root1" };
-			Graph.AddVertex(rootVertex);
-			_currentVertex = rootVertex;
+			_currentVertex = new Vertex();
 		}
 
 		public void Load()
@@ -42,12 +41,16 @@ namespace DataGraph
 			if (!File.Exists(savePath))
 			{
 				Graph = new UndirectedGraph<Vertex, Edge>();
+				var rootVertex = new Vertex() { Name = "root1" };
+				Graph.AddVertex(rootVertex);
+				_currentVertex = rootVertex;
 			}
 			else
 			{
 				var serialized = File.ReadAllText(savePath);
-				var graphDeserialized = SerializationUtility.FromJson<SerializableGraph>(serialized!);
-				Graph = graphDeserialized!.CreateGraph();
+				var sd = SerializationUtility.FromJson<SaveData>(serialized!);
+				Graph = sd!.CreateGraph();
+				_currentVertex = sd.CurrentVertex;
 			}
 		}
 
@@ -56,10 +59,12 @@ namespace DataGraph
 		public void Save()
 		{
 			// todo: сериализовать current vertex
-			SerializableGraph sg = new SerializableGraph(Graph);
+			SaveData sd = new SaveData(Graph);
+			sd.CurrentVertex = CurrentVertex;
 
 
-			var serialized = SerializationUtility.ToJson(sg);
+
+			var serialized = SerializationUtility.ToJson(sd);
 			File.WriteAllText(SavePath, serialized);
 		}
 

@@ -36,14 +36,18 @@
 			label2 = new Label();
 			label1 = new Label();
 			txtVertexName = new TextBox();
+			groupBox2 = new GroupBox();
+			lstEdges = new ListBox();
 			splitContainer3 = new SplitContainer();
 			((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
 			splitContainer1.Panel2.SuspendLayout();
 			splitContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
 			splitContainer2.Panel1.SuspendLayout();
+			splitContainer2.Panel2.SuspendLayout();
 			splitContainer2.SuspendLayout();
 			groupBox1.SuspendLayout();
+			groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
 			splitContainer3.SuspendLayout();
 			SuspendLayout();
@@ -71,6 +75,10 @@
 			// 
 			splitContainer2.Panel1.BackColor = SystemColors.ActiveBorder;
 			splitContainer2.Panel1.Controls.Add(groupBox1);
+			// 
+			// splitContainer2.Panel2
+			// 
+			splitContainer2.Panel2.Controls.Add(groupBox2);
 			splitContainer2.Size = new Size(892, 494);
 			splitContainer2.SplitterDistance = 493;
 			splitContainer2.TabIndex = 0;
@@ -132,6 +140,27 @@
 			txtVertexName.Size = new Size(428, 23);
 			txtVertexName.TabIndex = 0;
 			// 
+			// groupBox2
+			// 
+			groupBox2.Controls.Add(lstEdges);
+			groupBox2.Dock = DockStyle.Fill;
+			groupBox2.Location = new Point(0, 0);
+			groupBox2.Name = "groupBox2";
+			groupBox2.Size = new Size(395, 494);
+			groupBox2.TabIndex = 0;
+			groupBox2.TabStop = false;
+			groupBox2.Text = "Edges";
+			// 
+			// lstEdges
+			// 
+			lstEdges.Dock = DockStyle.Fill;
+			lstEdges.FormattingEnabled = true;
+			lstEdges.Items.AddRange(new object[] { "saedfasdf", "adsfgasdfh", "sdf", "dsfagsdfg" });
+			lstEdges.Location = new Point(3, 19);
+			lstEdges.Name = "lstEdges";
+			lstEdges.Size = new Size(389, 472);
+			lstEdges.TabIndex = 0;
+			// 
 			// splitContainer3
 			// 
 			splitContainer3.Dock = DockStyle.Bottom;
@@ -161,10 +190,12 @@
 			((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
 			splitContainer1.ResumeLayout(false);
 			splitContainer2.Panel1.ResumeLayout(false);
+			splitContainer2.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
 			splitContainer2.ResumeLayout(false);
 			groupBox1.ResumeLayout(false);
 			groupBox1.PerformLayout();
+			groupBox2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
 			splitContainer3.ResumeLayout(false);
 			ResumeLayout(false);
@@ -181,5 +212,9 @@
 		private Label label2;
 		private RichTextBox txtVertexDescription;
 		private Button btnSave;
+		private GroupBox groupBox2;
+		private ListView listView1;
+		private ListBox lstEdges;
+		private ColumnHeader columnHeader1;
 	}
 }

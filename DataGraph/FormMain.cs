@@ -90,6 +90,15 @@ namespace DataGraph
 		private void UpdateState()
 		{
 			UpdateCurrentVertex();
+			UpdateEdges();
+		}
+
+		private void UpdateEdges()
+		{
+			var currentVertex = Controller.CurrentVertex;
+			var edges = Controller.Graph.AdjacentEdges(currentVertex);
+			lstEdges.Items.Clear();
+			lstEdges.Items.AddRange(edges.ToArray());
 		}
 
 		private void UpdateCurrentVertex()
