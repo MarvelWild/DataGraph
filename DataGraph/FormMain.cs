@@ -10,63 +10,36 @@ namespace DataGraph
 	public partial class FormMain : Form
 	{
 
-		public Vertex CreateVertex(string id)
-		{
-			return new Vertex() { Name = id };
-		}
 
-		public Edge CreateEdge(Vertex src, Vertex target, string id)
-		{
-			// (source, target, id) => new Edge<int>(source, target)
-			return new Edge() { Source = src, Target = target};
-		}
+		
 
-		public string SavePath { get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "graph.json"); ; } }
-
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public UndirectedGraph<Vertex, Edge> Graph { get; set; }
+		public MainController Controller = new MainController();
 
 		public FormMain()
 		{
 			InitializeComponent();
 			FormClosing += FormMain_FormClosing;
 
-			Load();
+			Controller.Load();
+			Controller.CurrentVertexChanged += Controller_CurrentVertexChanged;
 
 
 		} // FormMain
 
+		private void Controller_CurrentVertexChanged(object? sender, EventArgs e)
+		{
+			UpdateState();
+		}
+
 		private void FormMain_FormClosing(object? sender, FormClosingEventArgs e)
 		{
-			Save();
-		}
-
-		private void Load()
-		{
-			var savePath = SavePath;
-			if (!File.Exists(savePath))
-			{
-				Graph = new UndirectedGraph<Vertex, Edge>();
-			}
-			else
-			{
-				var serialized = File.ReadAllText(savePath);
-				var graphDeserialized = SerializationUtility.FromJson<SerializableGraph>(serialized!);
-				Graph = graphDeserialized!.CreateGraph();
-			}
+			Controller.Save();
 		}
 
 
-		// todo: вызывать на каждом изменении
-		// todo opt: каждую ноду и грань в отдельный файл
-		private void Save()
-		{
-			SerializableGraph sg = new SerializableGraph(Graph);
 
 
-			var serialized = SerializationUtility.ToJson(sg);
-			File.WriteAllText(SavePath, serialized);
-		}
+
 
 		/// <summary>
 		/// Тут тестим новые фичи
@@ -100,5 +73,24 @@ namespace DataGraph
 			//var graph1 = graphDeserialized.CreateGraph();
 
 		}
+
+		private void FormMain_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void FormMain_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Insert)
+			{
+				Controller.CreateChildVertex();
+			}
+		}
+
+		private void UpdateState()
+		{ 
+		}
+
+
 	}
 }
