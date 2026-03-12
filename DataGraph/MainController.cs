@@ -8,13 +8,15 @@ namespace DataGraph
 {
 	public class MainController
 	{
-		private Vertex? _currentVertex;
+		private Vertex _currentVertex;
 
 		public event EventHandler? CurrentVertexChanged;
 
 		public UndirectedGraph<Vertex, Edge> Graph { get; set; }
 
-		public Vertex? CurrentVertex { get => _currentVertex; 
+
+		// todo: рутовую запретить удалять
+		public Vertex CurrentVertex { get => _currentVertex; 
 			set 
 			{
 				_currentVertex = value;
@@ -29,6 +31,9 @@ namespace DataGraph
 		public MainController()
 		{
 			Graph = new UndirectedGraph<Vertex, Edge>();
+			var rootVertex = new Vertex() { Name = "root1" };
+			Graph.AddVertex(rootVertex);
+			_currentVertex = rootVertex;
 		}
 
 		public void Load()

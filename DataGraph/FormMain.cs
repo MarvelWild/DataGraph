@@ -76,7 +76,7 @@ namespace DataGraph
 
 		private void FormMain_Load(object sender, EventArgs e)
 		{
-
+			UpdateState();
 		}
 
 		private void FormMain_KeyDown(object sender, KeyEventArgs e)
@@ -88,9 +88,15 @@ namespace DataGraph
 		}
 
 		private void UpdateState()
-		{ 
+		{
+			UpdateCurrentVertex();
 		}
 
-
+		private void UpdateCurrentVertex()
+		{
+			var currentVertex = Controller.CurrentVertex;
+			txtVertexName.Text = currentVertex.Name;
+			txtVertexDescription.Text = currentVertex.Description;
+		}
 	}
 }
